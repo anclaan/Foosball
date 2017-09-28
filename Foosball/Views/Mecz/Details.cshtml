@@ -1,0 +1,92 @@
+﻿@model Foosball.Models.Mecz
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+
+<div>
+    <h2>Szczegóły Meczu</h2>
+    <hr />
+    @*<dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Data)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Data)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Druzyna1Bramki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Druzyna1Bramki)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Druzyna2Bramki)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Druzyna2Bramki)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Druzyna1.Nazwa)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Druzyna1.Nazwa)
+        </dd>
+
+    </dl>*@
+    <dt>
+        @Html.DisplayNameFor(model => model.Data)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Data)
+    </dd>
+    <table class="table">
+        <tr>
+            <td>
+                <div id="pilka">
+                    <img src="~/images/pilka.png" alt="Pilka" />
+                </div>
+            </td>
+            <td>
+                <div id="d1">
+                    @Html.DisplayFor(modelItem => Model.Druzyna1.Nazwa)
+                </div>
+            </td>
+            <td>
+                <div id="wynik">
+
+
+                    @Html.DisplayFor(modelItem => Model.Druzyna1Bramki)
+                    @Html.Label(" - ")
+                    @Html.DisplayFor(modelItem => Model.Druzyna2Bramki)
+
+
+                </div>
+            </td>
+            <td>
+                <div id="d2">
+                    @Html.DisplayFor(modelItem => Model.Druzyna2.Nazwa)
+                </div>
+            </td>
+            <td>
+                <div id="pilka">
+                    <img src="~/images/pilka.png" alt="Pilka" />
+                </div>
+            </td>
+
+        </tr>
+    </table>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

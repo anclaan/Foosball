@@ -1,0 +1,112 @@
+﻿@model Foosball.Models.Druzyna
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Druzyna</h4>
+    <hr />
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayName("Druzyna")
+                </th>
+                <th>
+                    @Html.DisplayName("Zawodnik 1")
+                </th>
+                <th>
+                    @Html.DisplayName("Zawodnik 2")
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <img src="~/images/logos/@Model.Logo" class="img-circle" alt="img" height="50px" width="50px" style="vertical-align:middle"  />
+                    @Html.DisplayFor(model => model.Nazwa)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(model => model.Zawodnik1.Nazwisko)
+                </td>
+
+
+                <td>
+                    @Html.DisplayFor(model => model.Zawodnik2.Nazwisko)
+                </td>
+            </tr>
+        </tbody>
+     </table>
+        <div id="chart"></div>
+        <script>
+
+            function createChart() {
+
+                var wygrane=  kendo.toString((100*@ViewBag.druzyna.MeczeWygrane)/(@ViewBag.druzyna.MeczeRozegrane), '0.00');
+                var statystykaWygrane=wygrane+"% "+ "(@ViewBag.druzyna.MeczeWygrane) ";
+
+                var przegrane=  kendo.toString((100*@ViewBag.druzyna.MeczePrzegrane)/(@ViewBag.druzyna.MeczeRozegrane), '0.00');
+                var statystykaPrzegrane=przegrane+"% "+ "(@ViewBag.druzyna.MeczePrzegrane) ";
+
+                var remisy=  kendo.toString((100*@ViewBag.druzyna.MeczeZremisowane)/(@ViewBag.druzyna.MeczeRozegrane), '0.00');
+                var statystykaRemisy=remisy+"% "+ "(@ViewBag.druzyna.MeczeZremisowane) ";
+
+
+                $("#chart").kendoChart({
+                    title: {
+                        position: "top",
+                        text: "Statystyki drużyny"
+                    },
+                    legend: {
+                        visible: false
+                    },
+                    chartArea: {
+                        background: ""
+                    },
+                    seriesDefaults: {
+                        type: "donut",
+                        startAngle: 150
+                    },
+                    series: [{
+                        name: "@Html.DisplayFor(model => model.Nazwa)",
+
+                        data: [{
+
+                            category: "Mecze wygrane",
+                            value: statystykaWygrane,
+                            color: "#33FF33"
+                        }, {
+                            category: "Mecze przegrane",
+                            value: statystykaPrzegrane,
+                            color: "#CC0033"
+                        }, {
+                            category: "Remisy",
+                            value: statystykaRemisy,
+                            color: "#00009C"
+                        }],
+                        labels: {
+                            visible: true,
+                            background: "transparent",
+                            position: "outsideEnd",
+                            template: "#= category #: \n #= value #"
+                        }
+                    }],
+                    tooltip: {
+                        visible: true,
+                        template: "#= category # (#= series.name #): #= value #"
+                    }
+                });
+            }
+
+            $(document).ready(createChart);
+            $(document).bind("kendo:skinChange", createChart);
+        </script>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Foosball.Models.Tabela>
+
+@{
+    ViewBag.Title = "Tabela rozgrywek";
+    var i = 0;
+}
+
+<h2>Tabela rozgrywek</h2>
+   @Html.ActionLink("Eksport PDF", "EksportPDF", null, new { @class = "btn btn-danger eksport" })
+<br /><br /> 
+
+<table class="table table-hover" id="tabelaLigi" border="1">
+    <thead style="background-color:black; color:white">
+        <tr>
+            <th>
+                @Html.DisplayName("Pozycja")
+            </th>
+            <th>
+                @Html.DisplayName("")
+            </th>
+            <th>
+                @Html.DisplayName("M")
+            </th>
+            <th>
+                @Html.DisplayName("Z")
+            </th>
+            <th>
+                @Html.DisplayName("R")
+            </th>
+            <th>
+                @Html.DisplayName("P")
+            </th>
+            <th>
+                @Html.DisplayName("G+")
+            </th>
+            <th>
+                @Html.DisplayName("G-")
+            </th>
+            <th>
+                @Html.DisplayName("PKT")
+            </th>
+          @if ((string)Session["UserRole"] == "0")
+          {
+                <th>
+                    @Html.DisplayName("Edytuj")
+                </th>
+            }
+            
+
+        </tr>
+    </thead> 
+    <tbody style="background-color:Background">
+     
+        @foreach (var item in Model)
+        {
+            i++;
+            <tr>
+                <td>
+                    @i
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Druzyna.Nazwa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeczeRozegrane)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeczeWygrane)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeczeZremisowane)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MeczePrzegrane)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BramkiStrzelone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.BramkiStracone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Punkty)
+                </td>
+               @if ((string)Session["UserRole"] == "0")
+               {
+                <td>
+                    @Html.ActionLink(" ", "Edit", new { id = item.Id }, new { @class = "glyphicon glyphicon-edit black" }) |
+                    @Html.ActionLink(" ", "Details", new { id = item.Id }, new { @class = "glyphicon glyphicon-plus black" }) |
+                    @Html.ActionLink(" ", "Delete", new { id = item.Id }, new { @class = "glyphicon glyphicon-remove black" })
+
+                </td>
+                }
+            </tr>
+
+        }
+    </tbody>
+</table>

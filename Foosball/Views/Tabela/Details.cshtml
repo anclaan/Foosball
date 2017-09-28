@@ -1,0 +1,82 @@
+﻿@model Foosball.Models.Tabela
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tabela</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Druzyna)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Druzyna.Nazwa)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Punkty)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Punkty)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeczeRozegrane)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeczeRozegrane)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeczeWygrane)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeczeWygrane)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeczePrzegrane)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeczePrzegrane)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MeczeZremisowane)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MeczeZremisowane)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BramkiStrzelone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BramkiStrzelone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BramkiStracone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BramkiStracone)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
